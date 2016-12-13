@@ -9,13 +9,26 @@ import time
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
-adressApi = 'https://api.ipify.org'
 
-class GetIPAddr(object):
+class GetIpAdress(object):
+    
+    def __init__(self):
+        # self.GetIpAdress = GetIpAdress
+        self.show_me = GetIpAdress.show_me()
+        # self.get_ip = GetIpAdress.get_ip()
+        self.DigitalOcean = GetIpAdress.DigitalOcean()
+    
     def get_ip():
+        adressApi = 'https://api.ipify.org'
         f = requests.get(adressApi).text
         return f
-    def show_me():
-        print(GetIPAddr.get_ip())
 
-GetIPAddr.show_me()
+    def DigitalOcean():
+        apiKey = open('./API_KEY', 'r').readline().rstrip()
+        print(apiKey)
+        
+    def show_me():
+        print(GetIpAdress.get_ip())
+        #print(GetIpAdress.DigitalOcean())
+
+GetIpAdress()

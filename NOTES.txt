@@ -1,0 +1,1 @@
+curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer fc27b7a7b800b1e4aca27b2910dc4192553b20c3631270e1ee8dea808975bb5e" "https://api.digitalocean.com/v2/domains/gauz.se/records/18281820"
