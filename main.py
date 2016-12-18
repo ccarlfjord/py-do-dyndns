@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import logging
@@ -7,7 +7,7 @@ import json
 import requests
 import time
 
-#API_KEY = 'API_KEY'
+# API_KEY = 'API_KEY'
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
@@ -28,11 +28,6 @@ class DoApiKey(object):
 x = FetchIp().data
 f = DoApiKey().data
 
-y = 0
-while y < 3:
-    print(x)
-    print(f)
-    y += 1
     # def DigitalOcean():
     #     apiKey = open('./API_KEY', 'r').readline().rstrip()
     #     return apiKey
