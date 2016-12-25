@@ -15,8 +15,10 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 class FetchIp(object):
 
     def __init__(self):
+        self.tmp = open('.tmp', 'w')
         self.api = 'https://api.ipify.org'
         self.data = requests.get(self.api).text
+        self.tmp.writelines(self.data + '\n')
 
 
 class DoApiKey(object):
@@ -25,8 +27,7 @@ class DoApiKey(object):
         self.file = 'API_KEY'
         self.data = open(self.file, 'r').readline().rstrip()
 
-x = FetchIp().data
-f = DoApiKey().data
+x = FetchIp()
 
     # def DigitalOcean():
     #     apiKey = open('./API_KEY', 'r').readline().rstrip()
