@@ -11,16 +11,18 @@ import time
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
-CHECKIPAPI = 'https://ipinfo.io'
+ADRESSAPI = 'https://ipinfo.io'
+
 
 def get_ip_adress():
-    _r = requests.get(CHECKIPAPI).text
-    return json.loads(_r)['ip']
+    try:
+        r = requests.get(ADRESSAPI).text
+        return json.loads(r)['ip']
+    except Exception as e:
+        raise
+
 
 def get_domain_info():
     pass
 
 print(get_ip_adress())
-# def DigitalOcean():
-#     apiKey = open('./API_KEY', 'r').readline().rstrip()
-#     return apiKey
