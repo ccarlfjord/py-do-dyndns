@@ -11,24 +11,16 @@ import time
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
+CHECKIPAPI = 'https://ipinfo.io'
 
-class FetchIp(object):
+def get_ip_adress():
+    _r = requests.get(CHECKIPAPI).text
+    return json.loads(_r)['ip']
 
-    def __init__(self):
-        self.tmp = open('.tmp', 'w')
-        self.api = 'https://api.ipify.org'
-        self.data = requests.get(self.api).text
-        self.tmp.writelines(self.data + '\n')
+def get_domain_info():
+    pass
 
-
-class DoApiKey(object):
-
-    def __init__(self, *arg):
-        self.file = 'API_KEY'
-        self.data = open(self.file, 'r').readline().rstrip()
-
-x = FetchIp()
-
-    # def DigitalOcean():
-    #     apiKey = open('./API_KEY', 'r').readline().rstrip()
-    #     return apiKey
+print(get_ip_adress())
+# def DigitalOcean():
+#     apiKey = open('./API_KEY', 'r').readline().rstrip()
+#     return apiKey
