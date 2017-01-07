@@ -7,10 +7,7 @@ import json
 import requests
 import time
 
-# API_KEY = 'API_KEY'
-
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-
 ADRESSAPI = 'https://ipinfo.io'
 
 
@@ -23,6 +20,7 @@ def get_ip_adress():
 
 
 def get_domain_info():
-    pass
+    API_KEY = open('.API_KEY', 'r').read().rstrip()
+    return API_KEY
 
-print(get_ip_adress())
+print(get_domain_info())
