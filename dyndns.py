@@ -5,10 +5,11 @@ import sys
 import json
 import requests
 from datetime import datetime
+import os
 
 ADRESSAPI = 'https://ipinfo.io'
 DOMAIN = "gauz.se"
-API_KEY = open('.API_KEY', 'r').read().rstrip()
+API_KEY = ""
 RECORD = "ddns"
 DO_API_URL = "https://api.digitalocean.com/v2"
 DO_API_HEADER = {'Authorization': "Bearer %s" % (API_KEY)}
