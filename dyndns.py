@@ -25,7 +25,6 @@ def get_ip_adress():
 
 
 def get_domain(name=DOMAIN):
-    print("Fetching domain ID for: %s" % name)
     url = "%s/domains/" % (DO_API_URL)
 
     try:
