@@ -25,7 +25,7 @@ def get_ip_adress():
 
 
 def get_domain(name=DOMAIN):
-    print("Fetching domain ID for: ", name)
+    print("Fetching domain ID for: %s" % name)
     url = "%s/domains/" % (DO_API_URL)
 
     try:
@@ -64,7 +64,7 @@ def set_record_ip(domain, record, ipaddr):
 
 if __name__ == '__main__':
     try:
-        print("Updating ", RECORD, ".", DOMAIN, ":", datetime.now())
+        print("%s: Updating %s.%s" % (datetime.now(), RECORD, DOMAIN))
         ipaddr = get_ip_adress()
         domain = get_domain()
         record = get_record(domain)
