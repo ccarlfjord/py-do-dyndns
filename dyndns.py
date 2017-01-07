@@ -62,13 +62,14 @@ def set_record_ip(domain, record, ipaddr):
     req = requests.put(url, data=data, headers=headers)
 
 if __name__ == '__main__':
+    ts = datetime.now()
     try:
-        print("%s: Updating %s.%s" % (datetime.now(), RECORD, DOMAIN))
+        print("%s: Updating %s.%s" % (ts, RECORD, DOMAIN), end="")
         ipaddr = get_ip_adress()
         domain = get_domain()
         record = get_record(domain)
         if record['data'] == ipaddr:
-            print("Record %s.%s already set to %s." % (record['name'], domain['name'], ipaddr))
+            print("%s: Record %s.%s already set to %s. \n" % (ts, record['name'], domain['name'], ipaddr))
         else:
             set_record_ip(domain, record, ipaddr)
     except Exception as e:
