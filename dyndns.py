@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import logging
 import sys
 import json
 import requests
-import time
+from datetime import datetime
 
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 ADRESSAPI = 'https://ipinfo.io'
 DOMAIN = "gauz.se"
 API_KEY = open('.API_KEY', 'r').read().rstrip()
@@ -42,6 +40,7 @@ def get_domain(name=DOMAIN):
 
 
 def get_record(domain, name=RECORD):
+    print()
     url = "%s/domains/%s/records" % (DO_API_URL, domain['name'])
 
     try:
@@ -63,14 +62,14 @@ def set_record_ip(domain, record, ipaddr):
 
     req = requests.put(url, data=data, headers=headers)
 
-
 if __name__ == '__main__':
     try:
+        print("Updating ", RECORD, ".", DOMAIN, ":", datetime.now())
         ipaddr = get_ip_adress()
         domain = get_domain()
         record = get_record(domain)
         if record['data'] == ipaddr:
-            print("Record already set")
+            print("Record %s.%s already set to %s." % (record['name'], domain['name'], ipaddr))
         else:
             set_record_ip(domain, record, ipaddr)
     except Exception as e:
