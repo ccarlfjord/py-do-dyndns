@@ -7,23 +7,17 @@ import requests
 from datetime import datetime
 import config
 
-"""
-Loads config
-"""
 ADRESSAPI = config.adressapi
 DOMAIN = config.domain
 API_KEY = config.api_key
 RECORD = config.record
 
-"""
-Digitalocean stuff
-"""
 DO_API_URL = "https://api.digitalocean.com/v2"
 DO_API_HEADER = {'Authorization': "Bearer {0}" .format(API_KEY)}
 
-"""
-Does the work
-"""
+ts = str(datetime.now()).split('.')[0]
+
+
 def get_ip_adress():
     req = requests.get(ADRESSAPI)
     result = req.json()
@@ -72,7 +66,6 @@ def set_record_ip(domain, record, ipaddr):
     req = requests.put(url, data=data, headers=headers)
 
 if __name__ == '__main__':
-    ts = datetime.now()
     try:
         print("%s: Updating %s.%s" % (ts, RECORD, DOMAIN), end="")
         ipaddr = get_ip_adress()

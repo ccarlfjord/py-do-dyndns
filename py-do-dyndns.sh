@@ -1,5 +1,6 @@
 #!/bin/bash
 
 DIR=$(dirname $0)
+source $DIR/bin/activate
 
-$DIR/bin/python3 $DIR/py-do-dyndns/dyndns.py >> $DIR/py-do-dyndns.log 2>&1
+$DIR/py-do-dyndns/dyndns.py >> $DIR/py-do-dyndns.log 2>&1
