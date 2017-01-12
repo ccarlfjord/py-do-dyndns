@@ -5,16 +5,25 @@ import sys
 import json
 import requests
 from datetime import datetime
-import os
+import config
 
-ADRESSAPI = 'https://ipinfo.io'
-DOMAIN = "gauz.se"
-API_KEY = ""
-RECORD = "ddns"
+"""
+Loads config
+"""
+ADRESSAPI = config.adressapi
+DOMAIN = config.domain
+API_KEY = config.api_key
+RECORD = config.record
+
+"""
+Digitalocean stuff
+"""
 DO_API_URL = "https://api.digitalocean.com/v2"
-DO_API_HEADER = {'Authorization': "Bearer %s" % (API_KEY)}
+DO_API_HEADER = {'Authorization': "Bearer {0}" .format(API_KEY)}
 
-
+"""
+Does the work
+"""
 def get_ip_adress():
     req = requests.get(ADRESSAPI)
     result = req.json()

@@ -1,3 +1,8 @@
+bin
+include
+lib
+pip-selfcheck.json
 .API_KEY
 .tmp
 *.log
+__pycache__

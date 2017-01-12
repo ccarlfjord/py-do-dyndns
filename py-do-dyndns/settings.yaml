@@ -1,0 +1,5 @@
+---
+    api_key:
+    adressapi: https://ipinfo.io
+    domain: gauz.se
+    record: ddns
