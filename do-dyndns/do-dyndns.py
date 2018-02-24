@@ -8,6 +8,7 @@ import os
 import argparse
 import time
 import yaml
+import sys
 
 log = logging.getLogger("do-dyndns")
 log.setLevel(logging.INFO)
@@ -29,6 +30,7 @@ class Domain:
         if r.status_code != 200:
             log.error(
                 "Something went wrong. Error code: {0}. Retrying..." .format(r.status_code))
+            time.sleep(1)
             self.get_record()
         else:
             records = r.json()
@@ -41,6 +43,7 @@ class Domain:
         if r.status_code != 200:
             log.error(
                 "Something went wrong. Error code: {0}. Retrying..." .format(r.status_code))
+            time.sleep(1)
             self.get_ip()
         else:
             data = r.json()
@@ -65,36 +68,36 @@ class Domain:
         if r.status_code != 200:
             log.error(
                 "Updating record failed with error code: {0} on {1}" .format(r.status_code, url))
+            time.sleep(1)
             self.update_record()
         else:
             log.info("Done updating record {0}.{1} to {2}" .format(self.record, self.domain, ip))
             return r.status_code
 
 
-class Config:
+def main():
+    LOGFORMAT = '%(asctime)-15s %(message)s'
+    logging.basicConfig(level=logging.INFO, format=LOGFORMAT)
+    parser = argparse.ArgumentParser()
     f = open(os.path.join(os.getcwd(), 'settings.yaml'))
-    cfg = yaml.load(f)
+    parser.add_argument("--config", "--c", default=f)
+    args = parser.parse_args()
+    cfg = yaml.load(args.config)
 
     adress_api = cfg['adress_api']
     domain = cfg['domain']
     record = cfg['record']
     api_key = cfg['api_key']
     sleep = cfg['sleep']
+    if not api_key:
+        log.error("api_key is empty, add your DigitalOcean api key to settings.yaml")
+        sys.exit(1)
 
-    if api_key is None:
-        log.error(
-            "api_key is empty, add your DigitalOcean api key to settings.yaml")
-
-
-def main():
-    LOGFORMAT = '%(asctime)-15s %(message)s'
-    logging.basicConfig(level=logging.INFO, format=LOGFORMAT)
     while True:
-        log.info("Loading config")
-        cfg = Config()
-        d = Domain(cfg.adress_api, cfg.domain, cfg.record, cfg.api_key)
+        log.info("Starting update of {0}.{1}" .format(record, domain))
+        d = Domain(adress_api, domain, record, api_key)
         d.update_record()
-        time.sleep(cfg.sleep)
+        time.sleep(sleep)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 ---
-    api_key: 
-    adress_api: https://ipinfo.io
-    domain: gauz.se
-    record: ddns
-    sleep: 1200
+  api_key:
+  adress_api: https://ipinfo.io
+  domain: gauz.se
+  record: ddns
+  sleep: 1200
