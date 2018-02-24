@@ -5,6 +5,9 @@ DIR=$(pwd)
 VIRTUALENVDIR=$HOME/.venv/$APP
 
 virtualenv -p python3 $VIRTUALENVDIR
+source $VIRTUALENVDIR/bin/activate
+
+pip3 install -f requirements.txt
 
 systemctl stop $APP
 
