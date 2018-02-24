@@ -79,9 +79,10 @@ def main():
     LOGFORMAT = '%(asctime)-15s %(message)s'
     logging.basicConfig(level=logging.INFO, format=LOGFORMAT)
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", "--c", default=open(os.path.join(os.getcwd(), 'settings.yaml')))
+    parser.add_argument("--config", "-c", default="settings.yaml")
     args = parser.parse_args()
-    cfg = yaml.load(args.config)
+    f = open(os.path.join(os.path.dirname(__file__), args.config))
+    cfg = yaml.load(f)
 
     adress_api = cfg['adress_api']
     domain = cfg['domain']
