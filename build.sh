@@ -18,7 +18,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=$DIR
-ExecStart=$VIRTUALENVDIR/bin/python3 $DIR/$APP/$APP.py -f $DIR/settings.yaml
+ExecStart=$VIRTUALENVDIR/bin/python3 $DIR/$APP/$APP.py -c $DIR/settings.yaml
 
 [Install]
 WantedBy=default.target
